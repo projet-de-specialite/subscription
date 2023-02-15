@@ -8,7 +8,6 @@ import fr.serkox.SubscriptionModule.service.SubscriptionService;
 
 import java.util.Objects;
 
-import static java.lang.Character.isDigit;
 import static java.util.Objects.isNull;
 
 @RestController
@@ -26,8 +25,7 @@ public class SubscriptionController {
     public SubscriptionResponse createSubscription(@RequestBody Subscription subscription){
         if(isNull(subscription.getUserId()) || isNull(subscription.getFollowerId())) return SubscriptionResponse.ERROR;
         if(Objects.equals(subscription.getFollowerId(), subscription.getUserId())) return SubscriptionResponse.ERROR;
-        if(subscriptionService.subscriptionExist(subscription) != null) return SubscriptionResponse.ERROR;
-        if(!isDigit(subscription.getUserId()) || !isDigit(subscription.getFollowerId())) return SubscriptionResponse.ERROR;
+        if(subscriptionService.subscriptionExist(subscription)) return SubscriptionResponse.ERROR;
         if(this.subscriptionService.save(subscription) != null) return SubscriptionResponse.OK;
         return SubscriptionResponse.ERROR;
     }
