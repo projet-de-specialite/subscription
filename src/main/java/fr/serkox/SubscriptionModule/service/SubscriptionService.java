@@ -16,11 +16,16 @@ public class SubscriptionService {
 
     @Transactional
     public Subscription save(Subscription subscription){
-        return subscriptionRepository.save(subscription);
+        return this.subscriptionRepository.save(subscription);
     }
 
-    public Subscription subscriptionExist(Subscription subscription){
-        return subscriptionRepository.findSubscriptionByUserIdAndFollowerId(subscription.getUserId(),subscription.getFollowerId());
+    @Transactional
+    public void delete(Subscription subscription){
+        this.subscriptionRepository.deleteSubscriptionByFollowerIdAndUserId(subscription.getFollowerId(), subscription.getUserId());
+    }
+
+    public boolean subscriptionExist(Subscription subscription){
+        return this.subscriptionRepository.existsSubscriptionByUserIdAndFollowerId(subscription.getUserId(), subscription.getFollowerId());
     }
 
 }

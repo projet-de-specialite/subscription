@@ -32,5 +32,13 @@ public class SubscriptionController {
         return SubscriptionResponse.ERROR;
     }
 
+    @DeleteMapping("")
+    public SubscriptionResponse deleteSubscription(@RequestBody Subscription subscription){
 
+        if(subscriptionService.subscriptionExist(subscription)){
+            this.subscriptionService.delete(subscription);
+            return SubscriptionResponse.OK;
+        }
+        return SubscriptionResponse.ERROR;
+    }
 }

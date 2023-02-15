@@ -5,5 +5,8 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface SubscriptionRepository extends JpaRepository<Subscription, Long> {
 
-    Subscription findSubscriptionByUserIdAndFollowerId(Integer userId, Integer followerId);
+    void deleteSubscriptionByFollowerIdAndUserId(Integer followerId, Integer userId);
+
+    boolean existsSubscriptionByUserIdAndFollowerId(Integer userId, Integer followerId);
+
 }
