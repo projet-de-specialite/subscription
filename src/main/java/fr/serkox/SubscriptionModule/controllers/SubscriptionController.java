@@ -41,12 +41,12 @@ public class SubscriptionController {
             return new ResponseEntity<>(new SubscriptionResponse(subscription,"Both ID are equals !"), HttpStatus.BAD_REQUEST);
         }
         if(subscriptionService.subscriptionExist(subscription)){
-            return new ResponseEntity<>(new SubscriptionResponse(subscription,"The subscription already exist !"), HttpStatus.BAD_REQUEST);
+            return new ResponseEntity<>(new SubscriptionResponse(subscription,"The subscription already exist !"), HttpStatus.CONFLICT);
         }
         if(this.subscriptionService.save(subscription) != null){
             return new ResponseEntity<>(new SubscriptionResponse(subscription,"The subscription has been created !"), HttpStatus.OK);
         }
-        return new ResponseEntity<>(new SubscriptionResponse(subscription,"An error has occured !"), HttpStatus.OK);
+        return new ResponseEntity<>(new SubscriptionResponse(subscription,"An error has occured !"), HttpStatus.NOT_FOUND);
     }
 
     @DeleteMapping("")
@@ -61,6 +61,6 @@ public class SubscriptionController {
             this.subscriptionService.delete(subscription);
             return new ResponseEntity<>(new SubscriptionResponse(subscription,"The subscription has been deleted !"), HttpStatus.OK);
         }
-        return new ResponseEntity<>(new SubscriptionResponse(subscription,"The subscription does not exist !"), HttpStatus.BAD_REQUEST);
+        return new ResponseEntity<>(new SubscriptionResponse(subscription,"The subscription does not exist !"), HttpStatus.NOT_FOUND);
     }
 }

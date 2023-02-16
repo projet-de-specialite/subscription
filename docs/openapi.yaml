@@ -1,0 +1,103 @@
+openapi: 3.0.3
+info:
+  title: Subscription module
+  description: |-
+    Subscription module
+  version: 1.0.1
+tags:
+  - name: subscription
+    description: Subscription module
+paths:
+  /subscription:
+    post:
+      tags:
+        - subscription
+      summary: Create a subscription
+      description: Create a subscription with userId and followerId
+      requestBody:
+        description: Create a subscription
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Subscription'
+        required: true
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SubscriptionResponse'
+        '400':
+          description: UserId and FollowerId are equal or one of the ID is null
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SubscriptionResponse'
+        '409':
+          description: The subscription already exist
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SubscriptionResponse'
+        '404':
+          description: An error has occured
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SubscriptionResponse'
+    delete:
+      tags:
+        - subscription
+      summary: Delete a subscription
+      description: Delete a subscription if already exist
+      requestBody:
+        description: Delete a subscription
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Subscription'
+        required: true
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SubscriptionResponse'
+        '400':
+          description: UserId and FollowerId are equal or one of the ID is null
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SubscriptionResponse'
+        '404':
+          description: The subscription does not exist
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SubscriptionResponse'
+components:
+  schemas:
+    SubscriptionResponse:
+      type: object
+      properties:
+        subscription:
+          $ref: '#/components/schemas/Subscription'
+        message:
+          type: string
+    Subscription:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: long
+          example: 1
+        userId:
+          type: integer
+          format: int64
+          example: 2
+        followerId:
+          type: integer
+          format: int64
+          example: 4
