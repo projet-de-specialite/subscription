@@ -1,16 +1,28 @@
 package fr.serkox.SubscriptionModule.model;
 
-public enum SubscriptionResponse {
+public class SubscriptionResponse {
 
-    OK("Ok"),
-    ERROR("Error");
+    private Subscription subscription;
+    private String message;
 
-    public final String value;
-    SubscriptionResponse(String value) {
-        this.value = value;
+    public Subscription getSubscription() {
+        return subscription;
     }
 
-    public String getValue() {
-        return value;
+    public void setSubscription(Subscription subscription) {
+        this.subscription = subscription;
+    }
+
+    public String getMessage() {
+        return message;
+    }
+
+    public void setMessage(String message) {
+        this.message = message;
+    }
+
+    public SubscriptionResponse(Subscription subscription, String message) {
+        this.subscription = subscription;
+        this.message = message;
     }
 }
