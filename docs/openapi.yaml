@@ -77,6 +77,52 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/SubscriptionResponse'
+  /subscription/getAllSubscriptions/{userId}:
+    get:
+      tags:
+        - subscription
+      summary: Finds all subscription from user
+      description: Return the all subscription from user id
+      parameters:
+        - name: userId
+          in: path
+          description: User id
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                type: list
+                items:
+                  $ref: '#/components/schemas/Subscription'
+  /subscription/getAllSubscribers/{userId}:
+    get:
+      tags:
+        - subscription
+      summary: Finds all subscribers from user
+      description: Return the all subscribers from user id
+      parameters:
+        - name: userId
+          in: path
+          description: User id
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                type: list
+                items:
+                  $ref: '#/components/schemas/Subscription'
 components:
   schemas:
     SubscriptionResponse:
