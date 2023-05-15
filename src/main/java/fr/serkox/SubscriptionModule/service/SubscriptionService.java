@@ -1,11 +1,11 @@
 package fr.serkox.SubscriptionModule.service;
 
-import jakarta.transaction.Transactional;
 import fr.serkox.SubscriptionModule.model.Subscription;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import fr.serkox.SubscriptionModule.repository.SubscriptionRepository;
 
+import javax.transaction.Transactional;
 import java.util.List;
 
 @Service

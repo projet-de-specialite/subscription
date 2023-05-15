@@ -1,9 +1,17 @@
 package fr.serkox.SubscriptionModule.model;
 
-import jakarta.persistence.*;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.RequiredArgsConstructor;
+import lombok.Setter;
+
+import javax.persistence.*;
 
 @Entity
 @Table(name="subscription")
+@Getter
+@Setter
+@RequiredArgsConstructor
 public class Subscription {
 
     @Id
@@ -15,35 +23,5 @@ public class Subscription {
 
     @Column(name="followerId")
     private Integer followerId;
-
-    public Subscription(Integer user_id, Integer follower_id){
-        super();
-        this.userId = user_id;
-        this.followerId = follower_id;
-    }
-
-    public Subscription() {
-        super();
-    }
-
-    public Long getId(){
-        return this.id;
-    }
-
-    public Integer getUserId(){
-        return this.userId;
-    }
-
-    public Integer getFollowerId(){
-        return this.followerId;
-    }
-
-    public void setUserId(Integer id){
-        this.userId=id;
-    }
-
-    public void setFollowerId(Integer id){
-        this.followerId=id;
-    }
 
 }
